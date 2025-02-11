@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Transition Example</title>
+    <style>
+        body {
+            transition: opacity 1s ease-in-out; /* Smooth fade transition */
+            opacity: 1;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="page2.html" class="nav-button">Go to Page 2</a>
+    </nav>
+
+    <script>
+        // When the page is loading, fade in
+        document.body.style.opacity = 1;
+
+        // When clicking the link, fade out before navigating
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.body.style.opacity = 0; // Fade out effect
+                setTimeout(() => {
+                    window.location.href = this.href; // Navigate after fade out
+                }, 1000); // Wait for 1 second (matching the CSS transition time)
+            });
+        });
+    </script>
+
+</body>
+</html>
